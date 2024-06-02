@@ -1,6 +1,6 @@
 import { User } from "@/lib/types/users";
 
-const url = process.env.NEXT_PUBLIC_URL || "";
+export const url = process.env.NEXT_PUBLIC_URL || "";
 const username = process.env.NEXT_PUBLIC_USERNAME || "";
 const password = process.env.NEXT_PUBLIC_PASSWORD || "";
 const headers = new Headers();

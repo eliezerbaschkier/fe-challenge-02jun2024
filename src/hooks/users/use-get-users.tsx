@@ -1,5 +1,6 @@
 import { getUsers } from "@/api-calls/users";
 import { useQuery } from "@tanstack/react-query";
+import { User } from "@/lib/types/users";
 
 export function useGetUsers() {
     const {
@@ -8,7 +9,7 @@ export function useGetUsers() {
         isError: isErrorUsers,
         error: errorUsers,
         isFetching: isFetchingUsers,
-    } = useQuery({
+    } = useQuery<User[]>({
         queryKey: ["users"],
         queryFn: getUsers,
     });

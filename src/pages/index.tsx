@@ -1,18 +1,11 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import { Button } from "antd";
-import { useQuery } from "@tanstack/react-query";
+import { useGetUsers } from "@/hooks/users/use-get-users";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-    const { data } = useQuery({
-        queryKey: ["test"],
-        queryFn: () =>
-            fetch("http://jsonplaceholder.typicode.com/users").then((res) =>
-                res.json()
-            ),
-    });
+    const { users } = useGetUsers();
 
     return (
         <main

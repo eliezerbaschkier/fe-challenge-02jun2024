@@ -1,3 +1,6 @@
+import { UserFormData } from "@/lib/types/users";
+import axios from "axios";
+
 export const url = process.env.NEXT_PUBLIC_URL || "";
 const username = process.env.NEXT_PUBLIC_USERNAME || "";
 const password = process.env.NEXT_PUBLIC_PASSWORD || "";
@@ -16,4 +19,15 @@ export async function deleteUser(id: string): Promise<void> {
             return;
         })
         .catch((error) => console.error("Error:", error));
+}
+
+export async function createUser(formData: UserFormData) {
+    const auth = { username, password };
+    try {
+        await axios.post("https://challenge.bodhilabs.dev/users", formData, {
+            auth,
+        });
+    } catch (error) {
+        console.error("Error creating user:", error);
+    }
 }

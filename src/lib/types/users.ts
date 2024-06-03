@@ -1,4 +1,4 @@
-export interface User {
+export type User = {
     _id: string;
     firstName: string;
     lastName: string;
@@ -11,8 +11,13 @@ export interface User {
     createdAtDate: string;
     updatedById: string;
     updatedAtDate: string;
-}
-export interface Preferences {
+};
+export type Preferences = {
     receiveEmails: boolean;
     receiveNotifications?: boolean;
-}
+};
+
+export type UserFormData = Omit<
+    User,
+    "createdAtDate" | "updatedAtDate" | "createdById" | "updatedById"
+>;

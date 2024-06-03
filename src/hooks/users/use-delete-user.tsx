@@ -10,7 +10,6 @@ export function useDeleteUser() {
         error: errorDeleteUser,
     } = useMutation({
         mutationFn: deleteUser,
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["users"] }),
     });
     return {
         deleteUserMutation,

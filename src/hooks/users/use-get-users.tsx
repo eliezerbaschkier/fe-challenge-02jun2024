@@ -6,13 +6,19 @@ export function useGetUsers() {
     const {
         data: users,
         isLoading: isLoadingUsers,
-        isError: isErrorUsers,
-        error: errorUsers,
+        isError: isErrorFetchingUsers,
+        error: errorFetchingUsers,
         isFetching: isFetchingUsers,
     } = useQuery<User[]>({
         queryKey: ["users"],
         queryFn: getUsers,
     });
 
-    return { users, isLoadingUsers, isErrorUsers, errorUsers, isFetchingUsers };
+    return {
+        users,
+        isLoadingUsers,
+        isErrorFetchingUsers,
+        errorFetchingUsers,
+        isFetchingUsers,
+    };
 }

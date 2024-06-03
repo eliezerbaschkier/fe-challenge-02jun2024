@@ -1,12 +1,29 @@
-import React from "react";
-import { Space, Table as AntdTable } from "antd";
+import React, { useMemo } from "react";
+import { Space, Table as AntdTable, Button } from "antd";
 import type { TableProps } from "antd";
 import { User } from "@/lib/types/users";
 import { formatDate } from "@/lib/utils/dates";
+import { useDeleteUser } from "@/hooks/users/use-delete-user";
 
 type Props = {
     data: User[];
 };
+
+function DeleteButton({ id }: { id: string }) {
+    const { deleteUserMutation, isPendingDeleteUser } = useDeleteUser();
+
+    return (
+        <Button
+            type="primary"
+            className="mx-0"
+            danger
+            onClick={() => deleteUserMutation(id)}
+            loading={isPendingDeleteUser}
+        >
+            Delete
+        </Button>
+    );
+}
 
 const columns: TableProps<User>["columns"] = [
     {
@@ -100,10 +117,11 @@ const columns: TableProps<User>["columns"] = [
     {
         title: "",
         key: "delete",
-        render: () => (
-            <Space size="middle">
-                <a>Delete</a>
-            </Space>
+        width: 125,
+        render: (_, record) => (
+            <div className="w-full flex items-center justify-center">
+                <DeleteButton id={record._id} />
+            </div>
         ),
     },
 ];
